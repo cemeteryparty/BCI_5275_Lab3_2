@@ -165,7 +165,7 @@ matrix to be optimized so that the mean squared error (expectation of $e_t^Te_t$
     \problem{1}{5}
     Please show that 
     \begin{equation}
-        e_t^Te_t=\epsilon_t^T\epsilon_t+\epsilon_t^TH_t^TK_t^TK_tH_t\epsilon_t-2\epsilon_t^TK_tH_t\epsilon_t+2\epsilon_t^TK_t^Tv_t-2v_t^TK_t^TK_tH_t\epsilon_t+v_t^TK_t^TK_tv_t
+        e_t^Te_t=\epsilon_t^T\epsilon_t+\epsilon_t^TH_t^TK_t^TK_tH_t\epsilon_t-2\epsilon_t^TK_tH_t\epsilon_t+2\epsilon_t^TK_tv_t-2v_t^TK_t^TK_tH_t\epsilon_t+v_t^TK_t^TK_tv_t
     \end{equation}
 \end{tcolorbox}
 \begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 1's answer}]
@@ -244,13 +244,31 @@ Since we know that
     \hat{\theta}_{t|t-1} = E[F_{t-1}\hat{\theta}_{t-1}+ G_{t-1}w_{t -1}]=F_{t-1}\hat{\theta}_{t-1}
 \end{equation}
 and $$\epsilon_t=\hat{\theta}_{t|t-1}-\theta_t,$$
-we can examine $E[\epsilon_tv_t^T]=E[(\hat{\theta}_{t|t-1}-\theta_t)v_t^T]=E[(\hat{\theta}_{t|t-1}v_t^T]-E[\theta_tv_t^T]=\textbf{0}_{k\times M}$
+we can examine $E[\epsilon_tv_t^T]=E[(\hat{\theta}_{t|t-1}-\theta_t)v_t^T]=E[\hat{\theta}_{t|t-1}v_t^T]-E[\theta_tv_t^T]=\textbf{0}_{k\times M}$
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
 \problem{3}{10}
 Please show that 
 \begin{equation}
     E[\epsilon_tv_t^T]=\textbf{0}_{k\times M} \ \& \ E[v_t\epsilon_t^T]=\textbf{0}_{M\times k}
 \end{equation}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 3's answer}]
+    $E[\epsilon_tv_t^T]=E[\hat{\theta}_{t|t-1}v_t^T]-E[\theta_tv_t^T]$\newline
+    \hspace*{0.5cm}$=E[(F_{t-1}\hat{\theta}_{t-1})v_t^T]-E[(F_{t-1}\theta_{t-1}+G_{t-1}w_{t-1})v_t^T]$\newline
+    \hspace*{0.5cm}$=F_{t-1}E[\hat{\theta}_{t-1}v_t^T]-F_{t-1}E[\theta_{t-1}v_t^T]-G_{t-1}E[w_{t-1}v_t^T]$\newline
+    In the hypothesis of ERP system, we know that $w$, $v$ and $\theta$ are 3  uncorrelated vectors,\newline
+    \hspace*{0.5cm}and $E[v_t]=\textbf{0}_{M\times 1}\ \forall t$\newline
+    2 vectors are called \textcolor{red}{uncorrelated} if $E[xy^T]=E[x]E[y]^T$\newline
+    So we can rewrite the equation to:\newline
+    $E[\epsilon_tv_t^T]=F_{t-1}E[\hat{\theta}_{t-1}]E[v_t]^T-F_{t-1}E[\theta_{t-1}]E[v_t]^T-G_{t-1}E[w_{t-1}]E[v_t]^T$\newline
+    \hspace*{0.5cm}$=F_{t-1}E[\hat{\theta}_{t-1}]\textbf{0}_{1\times M}-F_{t-1}E[\theta_{t-1}]\textbf{0}_{1\times M}-G_{t-1}E[w_{t-1}]\textbf{0}_{1\times M}$\newline
+    \hspace*{0.5cm}$=\textbf{0}_{K\times M}-\textbf{0}_{K\times M}-\textbf{0}_{K\times M}=\textbf{0}_{K\times M}$\newline
+    \noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
+    $E[v_t\epsilon_t^T]=E[v_t(\hat{\theta}_{t|t-1}-\theta_t)^T]=E[v_t(F_{t-1}\hat{\theta}_{t-1}-\theta_t)^T]=E[v_t(\hat{\theta}_{t-1}^TF_{t-1}^T-\theta_t^T)]$\newline
+    \hspace*{0.5cm}$=E[v_t(\hat{\theta}_{t-1}^TF_{t-1}^T)]-E[v_t\theta_t^T]=E[v_t\hat{\theta}_{t-1}^T]F_{t-1}^T-E[v_t\theta_t^T]$\newline
+    Because $v$ and $\theta$ are uncorrelated vectors and $E[v_t]=\textbf{0}_{M\times 1}\ \forall t$, we can rewrite the equation to:\newline
+    $E[v_t\epsilon_t^T]=E[v_t]E[\hat{\theta}_{t-1}]^TF_{t-1}^T-E[v_t]E[\theta_t]^T$\newline
+    \hspace*{0.5cm}$=\textbf{0}_{M\times 1}E[\hat{\theta}_{t-1}]^TF_{t-1}^T-\textbf{0}_{M\times 1}E[\theta_t]^T=\textbf{0}_{M\times k}-\textbf{0}_{M\times k}=\textbf{0}_{M\times k}$
 \end{tcolorbox}
 Let us define the error covariance of a priori state estimation
 \begin{equation}
