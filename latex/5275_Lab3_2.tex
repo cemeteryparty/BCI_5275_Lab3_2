@@ -305,6 +305,15 @@ Please show that
     C_{\hat{\theta}_{t}}=(I_k-K_tH_t)C_{\hat{\theta}_{t|t-1}}
 \end{equation}
 \end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 5's answer}]
+    We have $e_t=(I_k-K_tH_t)\epsilon_t+K_tv_t$ and $e_t^T=\epsilon_t^T(I_k-H_t^TK_t^T)+v_t^TK_t^T$\newline
+    $C_{\hat{\theta}_{t}}=E[e_te_t^T]=E[(I_k-K_tH_t)\epsilon_t\epsilon_t^T(I_k-H_t^TK_t^T)+(I_k-K_tH_t)\epsilon_tv_t^TK_t^T+K_tv_t\epsilon_t^T(I_k-H_t^TK_t^T)+K_tv_tv_t^TK_t^T]$\newline
+    \hspace*{0.5cm}$=(I_k-K_tH_t)E[\epsilon_t\epsilon_t^T](I_k-H_t^TK_t^T)+(I_k-K_tH_t)E[\epsilon_tv_t^T]K_t^T+K_tE[v_t\epsilon_t^T](I_k-H_t^TK_t^T)+K_tE[v_tv_t^T]K_t^T$\newline
+    \hspace*{0.5cm}$=(I_k-K_tH_t)C_{\hat{\theta}_{t|t-1}}(I_k-H_t^TK_t^T)+\textbf{0}_{k\times k}+\textbf{0}_{k\times k}+K_tC_v(t,t)K_t^T$\newline
+    \hspace*{0.5cm}$=(I_k-H_t^TK_t^T-K_tH_t+K_tH_tH_t^TK_t^T)C_{\hat{\theta}_{t|t-1}}+(C_{\hat{\theta}_{t|t-1}}H_t^T-K_tH_tC_{\hat{\theta}_{t|t-1}}H^T_t)K_t^T$\newline
+    \hspace*{0.5cm}$=(I_k-H_t^TK_t^T-K_tH_t+K_tH_tH_t^TK_t^T+H_t^TK_t^T-K_tH_tH^T_tK_t^T)C_{\hat{\theta}_{t|t-1}}$\newline
+    \hspace*{0.5cm}$=(I_k-K_tH_t)C_{\hat{\theta}_{t|t-1}}$
+\end{tcolorbox}
 Derive (1.21), one cancan compute $C_{\hat{\theta}_{t+1|t}}$ by using the state transition equation (1.1).\\
 Consider
 \begin{equation}
@@ -324,6 +333,19 @@ Please show that
 \begin{equation}
      C_{\hat{\theta}_{t|t-1}}=F_{t-1} C_{\hat{\theta}_{t-1}}F_{t-1}^T+G_{t-1}C_{w}(t-1,t-1)G_{t-1}^T
 \end{equation}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 6's answer}]
+    $C_{\hat{\theta}_{t|t-1}}=E[\epsilon_t\epsilon_t^T]=E[(F_{t-1}e_{t-1}-G_{t-1}w_{t-1})(F_{t-1}e_{t-1}-G_{t-1}w_{t-1})^T]$\newline
+    \hspace*{0.5cm}$=E[(F_{t-1}e_{t-1}-G_{t-1}w_{t-1})(e_{t-1}^TF_{t-1}^T-w_{t-1}^TG_{t-1}^T)]$\newline
+    \hspace*{0.5cm}$=E[F_{t-1}e_{t-1}e_{t-1}^TF_{t-1}^T-F_{t-1}e_{t-1}w_{t-1}^TG_{t-1}^T-G_{t-1}w_{t-1}e_{t-1}^TF_{t-1}^T+G_{t-1}w_{t-1}w_{t-1}^TG_{t-1}^T]$\newline
+    \hspace*{0.5cm}$=F_{t-1}E[e_{t-1}e_{t-1}^T]F_{t-1}^T-F_{t-1}E[e_{t-1}w_{t-1}^T]G_{t-1}^T-G_{t-1}E[w_{t-1}e_{t-1}^T]F_{t-1}^T+G_{t-1}E[w_{t-1}w_{t-1}^T]G_{t-1}^T$\newline
+    We know that $w$ and $\theta$ are uncorrelated, and $e$ is the linear transformation of $\theta$\newline
+    \hspace*{0.5cm}$\Rightarrow w$ and $e$  are uncorrelated to each other.\newline
+    Furthermore, we know that $E[w]=\textbf{0}_{k\times 1}$ and 2 uncorrelated vectors have property $E[xy^T]=E[x]E[y]^T$.\newline
+    Hence we can rewrite the equation to:\newline
+    $C_{\hat{\theta}_{t|t-1}}=F_{t-1}E[e_{t-1}e_{t-1}^T]F_{t-1}^T+G_{t-1}E[w_{t-1}w_{t-1}^T]G_{t-1}^T$\newline
+    \hspace*{0.5cm}$=F_{t-1}C_{\hat{\theta}_{t-1}}F_{t-1}^T+G_{t-1}E[w_{t-1}w_{t-1}^T]G_{t-1}^T$\hspace*{0.3cm}\textcolor{red}{(1.19)}\newline
+    \hspace*{0.5cm}$=F_{t-1}C_{\hat{\theta}_{t-1}}F_{t-1}^T+G_{t-1}C_{w}(t-1,t-1)G_{t-1}^T$
 \end{tcolorbox}
 \subsubsection{The Recursive Calculation Procedure for the Discrete Kalman Filter}
 \begin{center}
