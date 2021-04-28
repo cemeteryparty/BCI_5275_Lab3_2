@@ -282,6 +282,15 @@ Please show that
 \end{equation}
 Such $K_t$ is called the \textbf{Kalman Gain}. 
 \end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 4's answer}]
+    First, from \textcolor{red}{(1.14)} we have\newline
+    $K_tH_tE[\epsilon_t\epsilon_t^T]H^T_t-K_tH_tE[\epsilon_tv^T_t]-K_tE[v_t\epsilon_t^T]H^T_t+K_tE[v_tv^T_t]+E[\epsilon_tv^T_t]-E[\epsilon_t\epsilon_t^T]H^T_t=\textbf{0}_{k\times M}$\newline
+    $\Rightarrow K_tH_tC_{\hat{\theta}_{t|t-1}}H^T_t-K_tH_tE[\epsilon_tv^T_t]-K_tE[v_t\epsilon_t^T]H^T_t+K_tC_v(t,t)+E[\epsilon_tv^T_t]-C_{\hat{\theta}_{t|t-1}}H^T_t=\textbf{0}_{k\times M}$\newline
+    $\Rightarrow K_tH_tC_{\hat{\theta}_{t|t-1}}H^T_t-\textcolor{red}{\textbf{0}_{k\times M}}-\textcolor{red}{\textbf{0}_{k\times M}}+K_tC_v(t,t)+\textcolor{red}{\textbf{0}_{k\times M}}-C_{\hat{\theta}_{t|t-1}}H^T_t=\textbf{0}_{k\times M}$ \ \textcolor{red}{(1.16)}\newline
+    $\Rightarrow K_t\Big(H_tC_{\hat{\theta}_{t|t-1}}H^T+C_v(t,t)\Big)-C_{\hat{\theta}_{t|t-1}}H^T_t=\textbf{0}_{k\times M}$\newline
+    $\Rightarrow K_t\Big(H_tC_{\hat{\theta}_{t|t-1}}H^T+C_v(t,t)\Big)=C_{\hat{\theta}_{t|t-1}}H^T_t$\newline
+    $\Rightarrow K_t=C_{\hat{\theta}_{t|t-1}}H_t^T\Big(H_tC_{\hat{\theta}_{t|t-1}}H_t^T+C_v(t,t)\Big)^{-1}$
+\end{tcolorbox}
 \subsubsection{Updating the Error Covariance } 
 % 還要補說明
 The above Kalman gain contains the a priori error covariance $C_{\hat{\theta}_{t|t-1}}$ . This must be updated recursively based on each new measurement and the state transition model. 
