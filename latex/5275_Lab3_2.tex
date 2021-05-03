@@ -111,6 +111,7 @@ with initial condition $\theta_0$, Here we define $w_t\in\mathbb{R}^{k\times1}$ 
 \end{itemize}
 Given the following conditions:
 \begin{equation}
+    % mathtools dcases fix error pinhua
     C_v(t,s)=E[v_t\cdot v_s^T]= 
     \begin{dcases}
         \ \textbf{0}_{M\times M},& \text{where } t\neq s\\
@@ -118,6 +119,7 @@ Given the following conditions:
     \end{dcases}
 \end{equation}
 \begin{equation}
+    % mathtools dcases fix error pinhua
     C_w(t,s)=E[w_t\cdot w_s^T]= 
     \begin{dcases}
         \ \textbf{0}_{k\times k},& \text{where } t\neq s\\
@@ -182,7 +184,7 @@ matrix to be optimized so that the mean squared error (expectation of $e_t^Te_t$
     Hence, we can rewrite \textcolor{red}{eq(1)} to \newline
     $e_t^Te_t=\epsilon_t^T\epsilon_t+\epsilon_t^TH_t^TK_t^TK_tH_t\epsilon_t-2\epsilon_t^TK_tH_t\epsilon_t+2\epsilon_t^TK_tv_t-2v_t^TK_t^TK_tH_t\epsilon_t+v_t^TK_t^TK_tv_t$
 \end{tcolorbox}
-\clearpage
+\clearpage % hidden sign pinhua
 Let us differentiate the scalar function $e_t^Te_t$ with respect to matrix $K_t$ by using the following matrix differentiation rules.
 \begin{tcolorbox}[colback=RoyalBlue!5!white,colframe=RoyalBlue!75!black]%neRed!75!black
 \textbf{Matrix differentiation rule 1}\\
@@ -365,10 +367,22 @@ Which of the following statements are true regarding baseline correction? Assume
     \item[(D)]We take the mean of the prestimulus period (rather than just taking the voltage at time zero) so that we can obtain a better estimate of the noise level.
 \end{itemize}
 \end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 7's answer}]
+Answer: (B), (C)\newline
+Explanation:\newline
+(A)(B): The goal of baseline correction is to put all epochs onto the same scale; thus, the value subtracts from not only every point in the prestimulus period but also subtracts every point in the whole waveform.\newline
+(C)(D): We do baseline correction to make epochs onto appropriate scale so the goal that we average out random noise during the prestimulus period is to obtain a better estimate of the voltage offset instead of the noise level.
+\end{tcolorbox}
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
 \problem{8: Single choice}{5} 
 Imagine that a researcher conducts a study comparing a patient group with a control group in an oddball paradigm. The researcher conducts a separate patient/control $x$ rare/frequent ANOVA for each time point from 0-800 ms at each electrode site. Each ANOVA yielded 3 $p$ values (main effect of patient/control, main effect of rare/frequent, and interaction). The sampling rate was 250 Hz, so there were 200 time points between 0 and 800 ms. There were 32 electrode sites. If there are no true differences between groups, how many significant p values would you expect the researcher to obtain as a result of noise in the data? [For simplicity, assume that every time point and electrode site is independent of every other time point and electrode site. Assume that $\alpha=0.05$.]\\
 (A) 1280 (B) 507 (C) 320 (D) 960
+\end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 8's answer}]
+Answer: (D)\newline
+Explanation:\newline
+The total p values is $200\times 32 \times 3=19200$\newline
+Since $\alpha=0.05$, significant p values is $\alpha\times$ total p values and we can get 960.
 \end{tcolorbox}
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
 \problem{9}{5}%8.5
@@ -380,9 +394,14 @@ Imagine that a researcher conducts a go/no-go experiment in which subjects are s
     \item[(D)] Yes, because it is possible that red stimuli elicit a larger N1 than green stimuli.
 \end{itemize}
 \end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 9's answer}]
+Answer: (B), (C), (D)\newline
+Explanation:\newline
+The visual N1 can be influenced by color, motion, object, location and so on, (B) is the stimuli on different location, (C) is on different object, (D) is on different color.
+\end{tcolorbox}
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
 \problem{10}{5}
-The time-frequency plot below shows data from the oddballs in a mismatch negativity paradigm. Which of the following statements are true about this plot? 
+The time-frequency plot below shows data from the oddballs in a mismatch negativity paradigm. Which of the following statements are true about this plot?
 \begin{multicols*}{2}
 \begin{center}
     \includegraphics[height=4.5cm]{figure/Time-Frequency.png}
@@ -395,6 +414,13 @@ The time-frequency plot below shows data from the oddballs in a mismatch negativ
     \item[(D)] The activity shown in the box from ~80-280 milliseconds is probably a genuine oscillation.
 \end{itemize}
 \end{multicols*}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 10's answer}]
+Answer: (A), (C)\newline
+Explanation:\newline
+(A)(B): This is a time-frequency plot, the X axis is time and Y axis is frequency.\newline
+(C): The details in (C) matches with the characteristic in the left bottom part of the diagram, we need these set of wavelets to reproduce the original data.\newline
+(D): A genuine oscillation need to have significant positive and negative peaks, we can't find this characteristic in the black box.
 \end{tcolorbox}
 \section{Coding problem}
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
@@ -436,7 +462,13 @@ where baseline interval $[-200, 0]msec$, $Baseline^{ch}$ is mean by trial, and $
 \subproblem{g} For each channel, plot SNR for High picth and Low pitch. (Bar plot)
 \subproblem{h} Plot cumulative (by trial) SNR for  Fz, Cz, and Pz channel and give a description of your observation.
 \end{tcolorbox}
-
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 11's answer}]
+(a): band-pass filter between 0-125 Hz.\newline
+Read the set as mne.Epochs object, print mne.Epochs.info then we can get the frequency band of filter, we can also use plot\_psd function in mne.Epochs to plot the power spectral, we can get the same answer.\newline
+(b): high:low = 4:1.\newline
+Print mne.Epochs["2"].\_\_len\_\_() to get number of high pitch which is 400, and  mne.Epochs["3"].\_\_len\_\_() to get number of low pitch which is 100.\newline
+(h): In the chart of cumulative SNR, we can see that when number of trials are low, increse the number of trials will lower the value of SNR, however, it gets gradually higher. When the number of trials continue to increase. We assume that it's better to have a proper amount of trials, but once past the sweet-spot, it's no longer a good idea to add more trials.
+\end{tcolorbox}
 \begin{tcolorbox}[colback=RubineRed!5!white,colframe=RubineRed!75!black]
 \problem{12: 5 target SSVEP paradigm}{4+8+7=19}
 Please use the data: Day 2\_SSVEP.set to answer these questions.
@@ -465,7 +497,9 @@ Please use the data: Day 2\_SSVEP.set to answer these questions.
 \\\textbf{We extract $\{10,11,12,13\}Hz$ from PSD you get from subproblem (b), and called it as response frequency.}
 \subproblem{c} Plot topolot of response $Hz$ v.s. stimuli $Hz$ with same Min-Max normalization technique. That is, you will plot $4\times5=20$ topoplots this time.
 \end{tcolorbox}
-
+\begin{tcolorbox}[colback=YellowGreen!5!white,colframe=YellowGreen!75!black,title={Problem 12's answer}]
+(b): when we calculate the frequency, we can see the frequency may not be positive,and it is hard to distinguish the peak in  frequency . But when we calculate the power and plot it we can see that the value is always be positive, and it is more easy to find the peak value from the power of the signal.
+\end{tcolorbox}
 \begin{thebibliography}{6}
 \bibitem{Kalman Filter}
 Stefanos D. Georgiadis, Perttu O. Ranta-aho, Mika P. Tarvainen, Pasi A. Karjalainen, 
@@ -491,18 +525,16 @@ Donald L. Schomer and Fernando H. Lopes da Silva,
 \section{Feedback for Lab 3}
 This part is not for grading but for understanding learning situation of each student. Please give us your feedback and comments.
 \subsection{Work Division}
-For example,\\
 \begin{center}
-    \begin{tabular}{||c|c|c||}
+    \begin{tabular}{||c|c|l||}
     \hline
-     Student ID & Name & Be response for... ... \\
-    \hline
-     123456789 & Tony & solving Problem 1 and designing preprocessing algorithm in problem 7\\
-     \hline
-     987654321 & May & solving Problem 3 and designing preprocessing algorithm in problem 7\\
-     \hline
-      & & \\
-     \hline
+    Student ID & Name & Be response for... ... \\\hline
+    309554032 & Eric & problem12\\\hline
+    309551176 & Jen Hsuan & problem11\\\hline
+    309540022 & Alexander & problem1-10 \\\hline
+    0856642 & Xu-Tao Wei &  problem7-10\\\hline
+    0716092 & Wei-Chen Liao & problem7-10\\\hline
+    0716085 & Pin-Hua Lai & problem1-6, 11\\\hline
 \end{tabular}
 \end{center}
 \subsection{Suggestions and Comments}
